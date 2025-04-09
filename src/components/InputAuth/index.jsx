@@ -1,22 +1,33 @@
-import PropTypes from 'prop-types';
+import { default as propTypes, default as PropTypes } from 'prop-types';
+import React from "react";
+import "./index.css";
 
+const AuthInput = ({ field, type, value, onChange, hint, handleKeyDown, length }) => {
 
-const InputAuth = ({ type, placeholder, value, onChange }) => {
  return (
-  <input
-   type={type}
-   placeholder={placeholder}
-   value={value}
-   onChange={onChange}
-  />
+  <div className="form-group">
+   <label className='label-auth-field'>{field}</label>
+   <input
+    type={type}
+    placeholder={hint}
+    className="auth-input"
+    value={value}
+    onChange={onChange}
+    onKeyDown={handleKeyDown}
+    maxLength={length}
+    required
+   />
+  </div>
  );
-}
-
-InputAuth.propTypes = {
- type: PropTypes.string.isRequired,
- placeholder: PropTypes.string.isRequired,
- value: PropTypes.string.isRequired,
- onChange: PropTypes.func.isRequired,
 };
 
-export default InputAuth;
+AuthInput.propTypes = {
+ field: PropTypes.string,
+ type: PropTypes.string,
+ hint: PropTypes.string,
+ value: PropTypes.string | propTypes.number,
+ onChange: PropTypes.func,
+ handleKeyDown: PropTypes.func,
+ length: PropTypes.number
+};
+export default AuthInput;

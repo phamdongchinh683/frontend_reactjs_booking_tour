@@ -108,7 +108,6 @@ export function validateNumberVisitor(num) {
 
 export function validateDateField(value, label = "Date") {
   if (!value) return `${label} is required`;
-  // optionally add more complex checks
   return "";
 }
 

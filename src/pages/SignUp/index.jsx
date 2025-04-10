@@ -86,10 +86,6 @@ const SignUp = () => {
     <div className="container">
      <h2 className="title-auth">Sign Up</h2>
      <form id="signupForm">
-      <div className="auth-radio-group">
-       <label><input type="radio" name="role" value="Traveler" checked={form.role === "Traveler"} onChange={handleChange} /> Traveler</label>
-       <label><input type="radio" name="role" value="Guide" checked={form.role === "Guide"} onChange={handleChange} /> Guide</label>
-      </div>
       <AuthInput field="First Name" name="firstName" value={form.firstName} onChange={handleChange} hint="Your first name" />
       <AuthInput field="Last Name" name="lastName" value={form.lastName} onChange={handleChange} hint="Your last name" />
       <AuthInput field="Age" name="age" type="number" value={form.age} onChange={handleChange} hint="Your age" />

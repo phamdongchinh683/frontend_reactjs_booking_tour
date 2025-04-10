@@ -16,9 +16,9 @@ const RouterApp = () => {
         <Route path="/" element={<Navigate to="/sign-in" />} />
         <Route element={<PrivateRoutes />}>
           <Route index element={<Tour />} />
+          <Route path="tour" element={<Tour />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="book-tour/:id" element={<BookTour />} />
-          <Route path="my-booked" element={<Tour />} />
+          <Route path="booked" element={<BookTour />} />
           <Route path="tour/:id" element={<TourDetail />} />
         </Route>
         <Route element={<PublicRouter />}>

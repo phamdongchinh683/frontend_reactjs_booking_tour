@@ -1,4 +1,5 @@
 import AdbIcon from '@mui/icons-material/Adb';
+import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
@@ -12,14 +13,28 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../jwt/useToken';
 
 const pages = ['Tour', 'Booked'];
-const settings = ['Profile'];
+const settings = [
+  {
+    id: 1,
+    name: 'Profile',
+    link: '/profile',
+  },
+  {
+    id: 2,
+    name: 'Logout',
+    action: 'logout',
+  }
+];
 
 function Header() {
+  const { deleteToken } = useToken();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -40,12 +55,12 @@ function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <HolidayVillageIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -56,7 +71,7 @@ function Header() {
               textDecoration: 'none',
             }}
           >
-            COMPANY
+            PDCC
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -114,11 +129,11 @@ function Header() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
                 component={Link}
                 to={`/${page.toLowerCase()}`}
-                key={page}
+                key={index}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -148,20 +163,32 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography
-                    component={Link}
-                    to={`/${setting.toLowerCase()}`}
-                    sx={{ textAlign: 'center' }}>{setting}</Typography>
+              {settings.map((setting, index) => (
+                <MenuItem key={index} onClick={() => {
+                  handleCloseUserMenu();
+                  if (setting.action === 'logout') {
+                    deleteToken();
+                    navigate('/sign-in');
+                  }
+                }}>
+                  {setting.action === 'logout' ? (
+                    <Button sx={{ textAlign: 'center' }}>{setting.name}</Button>
+                  ) : (
+                    <Button
+                      component={Link}
+                      to={setting.link.toLowerCase()}
+                      sx={{ textAlign: 'center' }}
+                    >
+                      {setting.name}
+                    </Button>
+                  )}
                 </MenuItem>
               ))}
-              <Typography type='button' value={'Logout'} />
             </Menu>
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 }
 export default Header;

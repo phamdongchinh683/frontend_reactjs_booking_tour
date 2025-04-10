@@ -1,14 +1,12 @@
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import ImageTour from '../ImageTour';
 
-const TourCard = ({ id, adult, child, publicId, city, attractions, days, book, detail }) => {
+const TourCard = ({ id, adult, child, publicId, city, attractions, days, detail }) => {
  return (
   <Card
    sx={{
@@ -44,11 +42,6 @@ const TourCard = ({ id, adult, child, publicId, city, attractions, days, book, d
      </Typography>
     </CardContent>
    </CardActionArea>
-   <CardActions sx={{ justifyContent: 'flex-end' }}>
-    <Button size="small" variant="contained" color="primary" onClick={book}>
-     Book Now
-    </Button>
-   </CardActions>
   </Card>
  );
 }
@@ -61,7 +54,6 @@ TourCard.propTypes = {
  days: PropTypes.string.isRequired,
  adult: PropTypes.number.isRequired,
  child: PropTypes.number.isRequired,
- book: PropTypes.func,
  detail: PropTypes.func,
 };
 

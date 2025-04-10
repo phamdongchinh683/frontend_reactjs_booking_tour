@@ -19,12 +19,27 @@ export function AuthService() {
       configAxios
     );
 
+  const bookTour = (data) =>
+    axios.post(`${process.env.REACT_APP_API_BOOKING}`, data, configAxios);
+
+  const profile = (id) =>
+    axios.get(`${process.env.REACT_APP_API_PROFILE}`, configAxios);
+
+  const myBooked = () =>
+    axios.get(`${process.env.REACT_APP_API_MY_BOOKED}`, configAxios);
+
+  const getGuides = () =>
+    axios.get(`${process.env.REACT_APP_API_GUIDES}`, configAxios);
   const detailTourById = (id) =>
     axios.get(`${process.env.REACT_APP_API_TOUR_DETAIL}/${id}`, configAxios);
 
   const provinces = () => axios.get(`${process.env.REACT_APP_API_PROVINCES}`);
   return {
+    myBooked,
+    profile,
+    bookTour,
     getTours,
+    getGuides,
     detailTourById,
     register,
     provinces,

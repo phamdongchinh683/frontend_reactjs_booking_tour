@@ -19,8 +19,8 @@ export function AuthService() {
       configAxios
     );
 
-  const bookTour = (data) =>
-    axios.post(`${process.env.REACT_APP_API_BOOKING}`, data, configAxios);
+  const bookTour = (data, id) =>
+    axios.post(`${process.env.REACT_APP_API_BOOKING}/${id}`, data, configAxios);
 
   const profile = (id) =>
     axios.get(`${process.env.REACT_APP_API_PROFILE}`, configAxios);

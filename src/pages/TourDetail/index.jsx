@@ -8,7 +8,7 @@ import {
  Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import GradientCircularProgress from '../../components/GradientCircularProgress';
 import { AuthService } from '../../services';
@@ -18,7 +18,7 @@ const TourDetail = () => {
  const { id } = useParams();
  const { detailTourById } = AuthService();
  const [data, setData] = useState(null);
-
+ const navigate = useNavigate();
  const detailTour = async () => {
   try {
    const response = await detailTourById(id);
@@ -130,6 +130,11 @@ const TourDetail = () => {
           backgroundColor: '#1565c0',
          },
         }}
+        onClick={() =>
+         navigate(`/tour/${data._id}/book`, {
+          state: { prices: data.prices }
+         })
+        }
        >
         Book Now
        </Button>

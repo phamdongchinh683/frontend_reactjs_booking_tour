@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import BookTour from "../pages/BookTour";
+import Booked from "../pages/MyBooked";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
 import SignIn from "../pages/SignIn";
@@ -18,8 +19,9 @@ const RouterApp = () => {
           <Route index element={<Tour />} />
           <Route path="tour" element={<Tour />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="booked" element={<BookTour />} />
+          <Route path="tour/:id/book" element={<BookTour />} />
           <Route path="tour/:id" element={<TourDetail />} />
+          <Route path="booked" element={<Booked />} />
         </Route>
         <Route element={<PublicRouter />}>
           <Route path="sign-in" element={<SignIn />} />

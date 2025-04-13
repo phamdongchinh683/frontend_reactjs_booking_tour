@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import GradientCircularProgress from '../../components/GradientCircularProgress';
 import PaginationButtonGroup from '../../components/PaginationButtonGroup';
 import { AuthService } from '../../services';
-import { getWithExpiry } from '../../utils';
 import TourCard from './Components/TourCard';
 import TourSearch from './Components/TourSearch';
 
@@ -36,8 +35,6 @@ const Tour = () => {
 
 
   React.useEffect(() => {
-    const token = getWithExpiry('token');
-    if (!token) return;
     const cursorQuery = query.get("cursor");
     const directionQuery = query.get("direction") || "next";
     if (cursorQuery) {

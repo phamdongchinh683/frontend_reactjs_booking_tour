@@ -1,7 +1,15 @@
 import axios from "axios";
-import { configAxios } from "../configs/configAxios";
+import useToken from "../jwt/useToken";
 
 export function AuthService() {
+  const { getToken } = useToken();
+
+  const configAxios = {
+    headers: {
+      token: getToken,
+    },
+  };
+
   const register = (data) =>
     axios.post(process.env.REACT_APP_API_SIGN_UP, data);
 

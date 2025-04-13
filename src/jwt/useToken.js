@@ -1,7 +1,7 @@
-import { setWithExpiry } from "../utils";
+import { getWithExpiry, setWithExpiry } from "../utils";
 
 function useToken() {
-  const getToken = localStorage.getItem("token");
+  const getToken = getWithExpiry("token");
 
   const setToken = (newToken) => {
     setWithExpiry("token", newToken, 3600000);

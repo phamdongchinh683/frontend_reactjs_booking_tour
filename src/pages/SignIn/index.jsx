@@ -43,7 +43,6 @@ const SignIn = () => {
       }
 
       const response = await login(data);
-      console.log(response)
       if (response.data.status === 'success') {
         let token = response.data.data;
         setToken(token)

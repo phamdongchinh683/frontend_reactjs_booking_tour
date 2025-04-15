@@ -3,7 +3,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import React from 'react';
 
 
-const ImageTour = ({ publicId }) => {
+const ImageTour = ({ publicId, height }) => {
 
  const cld = new Cloudinary({
   cloud: {
@@ -16,7 +16,7 @@ const ImageTour = ({ publicId }) => {
  return (
   <div>
    <AdvancedImage cldImg={myImage} style={{
-    height: '200px', objectFit: 'cover',
+    height: height, objectFit: 'cover',
     width: '100%',
     objectFit: 'cover',
     borderTopLeftRadius: '16px',

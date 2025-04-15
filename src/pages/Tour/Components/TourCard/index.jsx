@@ -23,7 +23,7 @@ const TourCard = ({ id, adult, child, publicId, city, attractions, days, detail 
    key={id}
   >
    <CardActionArea onClick={detail}>
-    <ImageTour publicId={publicId} />
+    <ImageTour publicId={publicId} height={200}/>
     <CardContent sx={{ paddingBottom: 0 }}>
      <Typography gutterBottom variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
       {city}

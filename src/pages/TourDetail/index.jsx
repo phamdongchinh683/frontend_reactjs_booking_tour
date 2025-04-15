@@ -58,9 +58,10 @@ const TourDetail = () => {
          <Box key={index} sx={{ px: 1 }}>
           <ImageTour
            publicId={image}
+           height={600}
            sx={{
             width: '100%',
-            height: 300,
+            height: 500,
             objectFit: 'cover',
             borderRadius: 2,
            }}

@@ -41,7 +41,7 @@ const SignUp = () => {
  };
 
  const handlePhoneChange = (value) => {
-  if (/^\d{0,15}$/.test(value)) setForm({ ...form, phone: value });
+  if (/^\d{0,20}$/.test(value)) setForm({ ...form, phone: value });
  };
 
  const registerAccount = useCallback(async () => {

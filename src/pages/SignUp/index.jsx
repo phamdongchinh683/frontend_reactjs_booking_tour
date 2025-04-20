@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -41,10 +41,12 @@ const SignUp = () => {
  };
 
  const handlePhoneChange = (value) => {
-  if (/^\d{0,20}$/.test(value)) setForm({ ...form, phone: value });
+  if (/^\d{0,20}$/.test(value)) {
+   setForm({ ...form, phone: value });
+  }
  };
 
- const registerAccount = useCallback(async () => {
+ const registerAccount = async () => {
   const { username, email, password, phone, firstName, lastName, age, city, role } = form;
 
   const validators = [
@@ -60,9 +62,12 @@ const SignUp = () => {
   ];
 
   const error = validators.find(v => v !== "");
-  if (error) return toast.warn(error);
-
+  if (error) {
+   return toast.warn(error);
+  }
   try {
+   console.log(phone);
+
    const data = new User(username, password, age, city, firstName, lastName, email, phone, role);
    const response = await register(data);
    if (response.data?.status === "success") {
@@ -78,7 +83,7 @@ const SignUp = () => {
     toast.warn('This email is already in use');
    }
   }
- }, [form, register, navigate]);
+ };
 
  return (
   <>
@@ -88,7 +93,7 @@ const SignUp = () => {
      <form id="signupForm">
       <AuthInput field="First Name" name="firstName" value={form.firstName} onChange={handleChange} hint="Your first name" />
       <AuthInput field="Last Name" name="lastName" value={form.lastName} onChange={handleChange} hint="Your last name" />
-      <AuthInput field="Age" name="age" type="number" value={form.age} onChange={handleChange} hint="Your age" />
+      <AuthInput field="Age" name="age" type="number" value={form.age} min={0} max={90} onChange={handleChange} hint="Your age" />
       <label className="label-auth-field">City</label>
       <select
        name="city"

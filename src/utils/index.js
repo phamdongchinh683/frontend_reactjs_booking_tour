@@ -55,6 +55,8 @@ export function validateAge(age) {
   if (age === undefined || age === null) return "Age is required";
   if (isNaN(age)) return "Age must be a number";
   if (Number(age) < 10) return "Age must be at least 10";
+  if (Number(age) >90) return "Age must be under 90 years old";
+
   return "";
 }
 
@@ -76,10 +78,10 @@ export function validateEmail(email) {
 }
 
 export function validatePhoneNumber(phone) {
-  const phoneRegex = /^[0-9]{10,15}$/;
+  const phoneRegex = /^[0-9]{11,20}$/;
   if (!phone) return "Phone number is required";
   if (!phoneRegex.test(phone))
-    return "Phone number must contain only digits and be 10–15 characters long";
+    return "Phone number must contain only digits and be 11–20 characters long";
   return "";
 }
 

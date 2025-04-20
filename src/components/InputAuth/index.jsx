@@ -2,7 +2,7 @@ import { default as PropTypes } from 'prop-types';
 import React from "react";
 import "./index.css";
 
-const AuthInput = ({ field, name, type, value, onChange, hint, handleKeyDown, length }) => {
+const AuthInput = ({ field, name, type, value, onChange, hint, handleKeyDown, length, min, max }) => {
  return (
   <div className="form-group">
    <label className='label-auth-field'>{field}</label>
@@ -15,6 +15,8 @@ const AuthInput = ({ field, name, type, value, onChange, hint, handleKeyDown, le
     onChange={onChange}
     onKeyDown={handleKeyDown}
     maxLength={length}
+    min={min}
+    max={max}
     required
    />
   </div>
@@ -27,6 +29,8 @@ AuthInput.propTypes = {
  name: PropTypes.string,
  type: PropTypes.string,
  hint: PropTypes.string,
+ max: PropTypes.number,
+ min: PropTypes.string,
  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
  onChange: PropTypes.func,
  handleKeyDown: PropTypes.func,

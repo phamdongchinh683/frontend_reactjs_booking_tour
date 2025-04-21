@@ -69,11 +69,11 @@ const SignUp = () => {
    console.log(phone.length);
 
    const data = new User(username, password, age, city, firstName, lastName, email, phone, role);
-   // const response = await register(data);
-   // if (response.data?.status === "success") {
-   //  toast.success("Welcome! You can sign in now!");
-   //  setTimeout(() => navigate("/sign-in"), 1500);
-   // }
+   const response = await register(data);
+   if (response.data?.status === "success") {
+    toast.success("Welcome! You can sign in now!");
+    setTimeout(() => navigate("/sign-in"), 1500);
+   }
   } catch (e) {
    if (e.response.data.message === "username existed") {
     toast.warn("This username is already in use");

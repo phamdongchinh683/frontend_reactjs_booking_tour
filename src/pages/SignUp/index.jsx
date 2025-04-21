@@ -113,7 +113,7 @@ const SignUp = () => {
       <AuthInput field="Email" name="email" type="email" value={form.email} onChange={handleChange} hint="e.g. chinhchinh123@gmail.com" />
       <AuthInput field="Password" name="password" type="password" value={form.password} onChange={handleChange} hint="Your password" />
       <label className="label-auth-field">Mobile Number</label>
-      <PhoneInput value={form.phone} onChange={handlePhoneChange} className="number" style={{ marginBottom: "16px" }} />
+      <PhoneInput country={'vn'} value={form.phone} onChange={handlePhoneChange} className="number" style={{ marginBottom: "16px" }} />
       <AuthButton name="Sign Up" func={registerAccount} />
       <Link to="/sign-in" className="auth-link-page">Sign in to your account here</Link>
      </form>

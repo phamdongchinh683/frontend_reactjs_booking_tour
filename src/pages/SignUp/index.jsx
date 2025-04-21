@@ -66,14 +66,14 @@ const SignUp = () => {
    return toast.warn(error);
   }
   try {
-   console.log(phone);
+   console.log(phone.length);
 
    const data = new User(username, password, age, city, firstName, lastName, email, phone, role);
-   const response = await register(data);
-   if (response.data?.status === "success") {
-    toast.success("Welcome! You can sign in now!");
-    setTimeout(() => navigate("/sign-in"), 1500);
-   }
+   // const response = await register(data);
+   // if (response.data?.status === "success") {
+   //  toast.success("Welcome! You can sign in now!");
+   //  setTimeout(() => navigate("/sign-in"), 1500);
+   // }
   } catch (e) {
    if (e.response.data.message === "username existed") {
     toast.warn("This username is already in use");
@@ -113,7 +113,7 @@ const SignUp = () => {
       <AuthInput field="Email" name="email" type="email" value={form.email} onChange={handleChange} hint="e.g. chinhchinh123@gmail.com" />
       <AuthInput field="Password" name="password" type="password" value={form.password} onChange={handleChange} hint="Your password" />
       <label className="label-auth-field">Mobile Number</label>
-      <PhoneInput country={"vn"} value={form.phone} onChange={handlePhoneChange} className="number" style={{ marginBottom: "16px" }} />
+      <PhoneInput value={form.phone} onChange={handlePhoneChange} className="number" style={{ marginBottom: "16px" }} />
       <AuthButton name="Sign Up" func={registerAccount} />
       <Link to="/sign-in" className="auth-link-page">Sign in to your account here</Link>
      </form>

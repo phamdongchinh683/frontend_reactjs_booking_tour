@@ -81,7 +81,7 @@ export function validatePhoneNumber(phone) {
   const phoneRegex = /^[0-9]{11,20}$/;
   if (!phone) return "Phone number is required";
   if (!phoneRegex.test(phone))
-    return "Phone number must contain only digits and be 11–20 characters long";
+    return "Phone number must contain only digits and be 11–15 characters long";
   return "";
 }
 
